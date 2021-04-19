@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// once you declare it you better use it!
 func main() {
 	sentence := "Hello World, this is my first sentence in go!"
 
