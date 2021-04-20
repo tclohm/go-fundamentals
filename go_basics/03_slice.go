@@ -16,7 +16,11 @@ func main() {
 	fruitArray := [5]string{"banana", "pear", "apple", "kumquat", "peach"}
 
 	splicedFruit := fruitArray[1:3]
-	fmt.Println(splicedFruit)
-	fmt.Println(len(splicedFruit))
-	fmt.Println(cap(splicedFruit))
+
+	fruitToAdd := append(splicedFruit, "canteloupe", "cherries")
+
+	fmt.Println(splicedFruit, fruitToAdd)
+// 	fmt.Println(splicedFruit)
+// 	fmt.Println(len(splicedFruit))
+// 	fmt.Println(cap(splicedFruit))
 }
