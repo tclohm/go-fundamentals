@@ -22,6 +22,8 @@ func (u *User) describe() string {
 	return desc
 }
 
+// method more for changing state
+
 func main() {
 	user := User{ID: 1, Firstname: "Yaya", Lastname: "Ding Dong", Email: "yaya@dingdong.edu"}
 
