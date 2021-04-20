@@ -18,6 +18,7 @@ func openFile() error {
 	if err != nil {
 		return err
 	}
+	// LIFO
 	defer f.Close()
 	return nil
 }
