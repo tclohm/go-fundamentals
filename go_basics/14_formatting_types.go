@@ -9,6 +9,6 @@ func main () {
 	fmt.Printf("boolean: %t\n", false)
 	fmt.Printf("values: %v %v %v\n", 1.2, "\t", true)
 	fmt.Printf("values: %#v %#v %#v\n", 1.2, "\t", false)
-	fmt.Printf("types: %T %T %T\n", 1.2 "\t", true)
+	fmt.Printf("types: %T %T %T\n", 1.2, "\t", true)
 	fmt.Printf("percent sign: %%\n")
 }
