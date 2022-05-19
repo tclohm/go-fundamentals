@@ -1,5 +1,10 @@
 package main
 
+import (
+	"bytes"
+	"fmt"
+)
+
 func main() {
 	buffer := bytes.NewBufferString("")
 	numBytes, err := buffer.WriteString("Hello World")
