@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 	"mgrep/worklist"
+	"mgrep/worker"
 	"path/filepath"
+	"sync"
 
 	"github.com/alexflint/go-arg"
 )
@@ -47,7 +49,7 @@ func main() {
 		defer workersWg.Done()
 		discoverDirs(&wl, args.SearchDir)
 		wl.Finalize(numWorkers)
-	}
+	}()
 
 	for i := 0 ; i < numWorkers ; i++ {
 		workersWg.Add(1)
@@ -84,7 +86,7 @@ func main() {
 			case r := <- resultsChannel:
 				fmt.Printf("%v[%v]:%v\n", r.Path, r.LineNum, r.Line)
 			case <- blockWorkersWg:
-				if len(results) == 0 {
+				if len(resultsChannel) == 0 {
 					displayWg.Done()
 					return
 				}
