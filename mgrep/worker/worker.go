@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 	"bufio"
+	"strings"
 )
 
 type Result struct {
@@ -27,7 +28,7 @@ func FindInFile(path string, find string) *Results {
 		return nil
 	}
 
-	results := Result{make([]Result, 0)}
+	results := Results{make([]Result, 0)}
 
 	scanner := bufio.NewScanner(file)
 	lineNum := 1
