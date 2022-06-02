@@ -20,7 +20,7 @@ func discoverDirs(wl *worklist.Worklist, path string) {
 
 	for _, entry := range entires {
 		if entry.IsDir() {
-			nextPath := filepath.Join()
+			nextPath := filepath.Join(path, entry.Name())
 			discoverDirs(wl, nextPath)
 		} else {
 			wl.Add(worklist.NewJob(filepath.Join(path, entry.Name())))
@@ -37,7 +37,7 @@ func main() {
 	arg.MustParse(&args)
 
 	var workersWg sync.WaitGroup
-
+	// capacity 100
 	wl := worklist.New(100)
 
 	resultsChannel := make(chan worker.Result, 100)
@@ -45,6 +45,7 @@ func main() {
 	numWorkers := 10
 
 	workersWg.Add(1)
+	// goroutine -- 1 to discover files
 	go func() {
 		defer workersWg.Done()
 		discoverDirs(&wl, args.SearchDir)

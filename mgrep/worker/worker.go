@@ -8,9 +8,9 @@ import (
 )
 
 type Result struct {
-	Line string
+	Line 	string
 	LineNum int
-	Path string
+	Path 	string
 }
 
 type Results struct {
@@ -37,11 +37,12 @@ func FindInFile(path string, find string) *Results {
 			r := NewResult(scanner.Text(), lineNum, path)
 			results.Inner = append(results.Inner, r)
 		}
-		lineNum++
+		lineNum += 1
 	}
 	if len(results.Inner) == 0 {
 		return nil
 	} else {
+		// return a pointer to the results
 		return &results
 	}
 
