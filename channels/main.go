@@ -32,6 +32,8 @@ func (s *Server) loop() {
 			case <- s.quitChannel:
 				fmt.Println("shutting down")
 				break running
+			default:
+
 			}
 		}
 }
@@ -53,5 +55,6 @@ func main() {
 	server := NewServer()
 	server.Start()
 
-	server.quitChannel <- struct{}{}
+	//server.quitChannel <- struct{}{}
+	close(server.quitChannel)
 }
