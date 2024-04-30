@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"runtime"
 )
 
 func main() {
@@ -17,5 +18,7 @@ func main() {
 		}
 	}()
 
-	for {}
+	for {
+		runtime.Gosched()
+	}
 }
