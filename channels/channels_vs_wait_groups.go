@@ -16,7 +16,7 @@ func doWork(d time.Duration) {
 
 func main() {
 	start := time.Now()
-	doWork(time.Second * 2)
-	doWork(time.Second * 4)
+	go doWork(time.Second * 2)
+	go doWork(time.Second * 4)
 	fmt.Printf("work took %v seconds\n", time.Since(start))
 }
