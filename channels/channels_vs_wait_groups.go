@@ -26,6 +26,7 @@ func tell(d time.Duration, resChan chan string) {
 
 func main() {
 	start := time.Now()
+
 	//wg := sync.WaitGroup{}
 	//wg.Add(2)
 	//go doWork(time.Second * 2, &wg)
@@ -33,12 +34,20 @@ func main() {
 	//wg.Wait()
 
 	resultChan := make(chan string)
+	wg := &sync.WaitGroup{}
+	wg.Add(2) 
 	go tell(time.Second * 2, resultChan)
 	go tell(time.Second * 4, resultChan)
 
-	res1 := <- resultChan
-	fmt.Println(res1)
-	res2 := <- resultChan
-	fmt.Println(res2)
-	fmt.Printf("work took %v seconds\n", time.Since(start))
+	go func() {
+		for res := range resultChan {
+			fmt.Println(res)
+			wg.Done()
+		}
+		fmt.Printf("work took %v seconds\n", time.Since(start))
+	}()
+
+	wg.Wait()
+	close(resultChan)
+	time.Sleep(time.Second)
 }
